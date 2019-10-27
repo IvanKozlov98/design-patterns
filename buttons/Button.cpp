@@ -1,6 +1,7 @@
 #include "Button.h"
 #include "IButtonAction.h"
 #include <string>
+#include <iostream>
 
 
 DrinkButton::DrinkButton() {
@@ -26,7 +27,15 @@ ProxyStartButton::ProxyStartButton() {
 }
 
 void ProxyStartButton::actionButton() {
-    if
+    if (5 > 4) {
+        if (realStartButton == nullptr) {
+            realStartButton = std::make_unique<RealStartButton>();
+        }
+        realStartButton->actionButton();
+    }
+    else {
+        std::cout << "не достаточно средств";
+    }
 }
 
 
