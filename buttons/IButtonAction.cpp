@@ -9,6 +9,10 @@ void MoveButtonAction::actionButton() {
     std::cout << "move smth" << std::endl;
 }
 
-void StartButton::actionButton() {
-    std::cout << "start action" << std::endl;
+StartButtonAction::StartButtonAction() {
+    controller = std::make_unique<ProxyController>();
+}
+
+void StartButtonAction::actionButton() {
+    controller->startProcessCoffee();
 }

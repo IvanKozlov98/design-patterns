@@ -4,7 +4,7 @@ int main() {
     Button *drinkButton = new DrinkButton();
     Button *sugarButton = new SugarButton();
     Button *returnMoneyButton = new ReturnMoneyButton();
-    Button *startButton = new ProxyStartButton();
+    Button *startButton = new StartButton();
     Button *mas[4] {drinkButton, sugarButton, returnMoneyButton, startButton};
     for (auto elem: mas) {
         elem->actionButton();

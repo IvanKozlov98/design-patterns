@@ -39,18 +39,11 @@ public:
     ReturnMoneyButton();
 };
 
-class RealStartButton : public Button {
+class StartButton : public Button {
 public:
-    RealStartButton();
+    StartButton();
 };
 
-class ProxyStartButton : public Button {
-private:
-    std::unique_ptr<RealStartButton> realStartButton;
-public:
-    ProxyStartButton();
-    void actionButton();
-};
 
 
 #endif //COFEEAUTOMAT_BUTTON_H
