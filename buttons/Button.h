@@ -19,7 +19,7 @@ public:
     };
     Button(const std::string &name) : name(name) {
     }
-    Button() {}
+        Button() {}
     virtual ~Button() {}
 };
 
