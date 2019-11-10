@@ -23,6 +23,7 @@ public:
     // часть execute()
     // в процентном содержании
     virtual int getBalance() = 0;
+    virtual bool check() = 0;
 };
 
 
@@ -40,7 +41,7 @@ public:
     // execute()
     // в процентном содержании
     virtual int getBalance();
-    std::string getName();
+    virtual bool check();
 };
 
 class CassetteGlasses : public Device {
@@ -50,23 +51,27 @@ private:
 public:
     CassetteGlasses(const std::string&);
     int getBalance();
+    virtual bool check();
 };
 
 class SugarContainer : public Device {
 private:
+    // количество грамм сахара в контейнере
     int gr;
 public:
     SugarContainer(const std::string&);
     int getBalance();
+    virtual bool check();
 };
 
 class Ingredient : public Device {
 private:
-    // количество грамм
+    // количество грамм ингридиента
     int gr;
 public:
     Ingredient(const std::string&);
     int getBalance();
+    virtual bool check();
 };
 
 

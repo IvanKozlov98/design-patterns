@@ -1,4 +1,5 @@
 #include "devices/Devices.h"
+#include "devices/AdapterDevice.h"
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -32,11 +33,15 @@ int main() {
     Device *container = new Container("Container");
     Device *caramel = new Ingredient("caramel");
     Device *chockolate = new Ingredient("chockolate");
+
     container->add(*caramel);
 
     container->add(*container2);
     container->add(*chockolate);
 
+    Device *mixer = new AdapterDevice("mixer");
+
+    container->add(*mixer);
 
     Iterator *i = container->createIterator();
     for (i->first(); i->hasNext(); i->next()) {
