@@ -6,6 +6,7 @@
 #define COFEEAUTOMAT_DEVICES_H
 #include <vector>
 #include <string>
+#include "Iterator.h"
 
 class Device {
 private:
@@ -15,8 +16,10 @@ protected:
 public:
     std::string getName() { return _name; }
 
+    virtual Iterator* createIterator();
     virtual void add(Device&);
     virtual void remove(Device&);
+    virtual std::vector<Device*> *getChild();
     // часть execute()
     // в процентном содержании
     virtual int getBalance() = 0;
@@ -25,18 +28,19 @@ public:
 
 class Container : public Device {
 private:
+    Iterator *iterator = nullptr;
     std::vector<Device*> _devices;
 public:
     Container(const std::string &_name);
-
     virtual ~Container();
-    std::string getName();
 
     virtual void add(Device&);
     virtual void remove(Device&);
+    virtual std::vector<Device*> *getChild();
     // execute()
     // в процентном содержании
     virtual int getBalance();
+    std::string getName();
 };
 
 class CassetteGlasses : public Device {

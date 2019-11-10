@@ -3,14 +3,24 @@
 //
 
 #include "Devices.h"
+#include "Iterator.h"
 #include <string>
 
 Device::Device(const std::string &name) : _name(name) { }
 
 void Device::add(Device &) {}
 void Device::remove(Device &) {}
+Iterator* Device::createIterator() {
+    return new DeviceIterator(this);
+}
+
+std::vector<Device*>* Device::getChild() {
+    return nullptr;
+}
+
 
 Container::~Container()  {}
+
 
 Container::Container(const std::string &_name) : Device(_name){}
 
@@ -20,6 +30,11 @@ void Container::add(Device &device) {
 
 void Container::remove(Device &device) {
 }
+
+std::vector<Device*>* Container::getChild() {
+    return &_devices;
+}
+
 
 int Container::getBalance() { return 0;}
 
