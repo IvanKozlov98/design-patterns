@@ -20,6 +20,7 @@ public:
     virtual void add(Device&);
     virtual void remove(Device&);
     virtual std::vector<Device*> *getChild();
+    virtual void print();
     // часть execute()
     // в процентном содержании
     virtual int getBalance() = 0;
@@ -38,6 +39,7 @@ public:
     virtual void add(Device&);
     virtual void remove(Device&);
     virtual std::vector<Device*> *getChild();
+    virtual void print();
     // execute()
     // в процентном содержании
     virtual int getBalance();

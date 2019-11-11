@@ -2,6 +2,7 @@
 #define COFEEAUTOMAT_ITERATOR_H
 #include <stack>
 #include <queue>
+#include <deque>
 
 class Device;
 class Iterator {

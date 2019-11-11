@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <list>
 using namespace std;
 
 
@@ -42,11 +43,8 @@ int main() {
     Device *mixer = new AdapterDevice("mixer");
 
     container->add(*mixer);
+    container->print();
 
-    Iterator *i = container->createIterator();
-    for (i->first(); i->hasNext(); i->next()) {
-        cout << i->currentItem()->getName() << ' ';
-    }
 
 return 0;
 }
