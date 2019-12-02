@@ -45,7 +45,9 @@ void Container::print() {
     }
 }
 
-int Container::getBalance() { return 0;}
+int Container::getBalance() {
+    return 0;
+}
 
 bool Container::check() {
     Iterator *it = createIterator();
