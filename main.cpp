@@ -1,5 +1,7 @@
 #include "devices/Devices.h"
 #include "devices/AdapterDevice.h"
+#include "recipes/Recipe.h"
+#include "recipes/RecipeDecorator.h"
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -7,26 +9,27 @@
 using namespace std;
 
 
-class Point{
-public:
-    int x, y;
-    Point(int x, int y) {
-        this->x = x;
-        this->y = y;
-    }
-};
-
-int compare(Point *a, Point *b) {
-    return a->y < b->y;
-}
-
-
 int main() {
+    Recipe *capuch = new Cappuccino();
+    std::cout << capuch->getDescription();
+    Recipe *moc = new Macchiatto();
+    std::cout << moc->getDescription();
+    Recipe *latte= new Latte();
+    std::cout << latte->getDescription();
+
+    std::cout << "\n\n";
+    Sugar *additionalItem = new Sugar(capuch);
+    std::cout << additionalItem->getDescription() << endl;
+    additionalItem->makeMix();
+    Milk *aa = new Milk(additionalItem);
+    std::cout << aa->getDescription() << "\n\n\n";
+
     Device *container2 = new Container("Container 2");
     Device *caramel2 = new Ingredient("caramel 2");
     Device *chockolate2 = new Ingredient("chockolate 2");
     container2->add(*caramel2);
     container2->add(*chockolate2);
+
 
     Device *sugar = new SugarContainer("Container with sugar");
     std::cout << sugar->getName() << endl;
@@ -43,7 +46,12 @@ int main() {
     Device *mixer = new AdapterDevice("mixer");
 
     container->add(*mixer);
-    container->print();
+
+    Iterator *it = new DeviceIterator(container);
+    for (it->first(); it->hasNext(); it->next()) {
+        cout << it->currentItem()->getName() << " --> " << it->currentItem()->getBalance() << endl;
+    }
+    //container->print();
 
 
 return 0;
