@@ -8,27 +8,27 @@
 #define COFEEAUTOMAT_IBUTTONACTION_H
 
 
-class IButtonAction {
+class ButtonImpl {
 public:
-    virtual void actionButton() = 0;
+    virtual void pressButton() = 0;
 };
 
-class PushButtonAction : public IButtonAction {
+class PushButtonImpl : public ButtonImpl {
 public:
-    void actionButton();
+    void pressButton();
 };
 
-class MoveButtonAction : public IButtonAction {
+class MoveButtonImpl : public ButtonImpl {
 public:
-    void actionButton();
+    void pressButton();
 };
 
-class StartButtonAction  : public IButtonAction {
+class StartButtonImpl  : public ButtonImpl {
 private:
     std::unique_ptr<ProxyController> controller;
 public:
-    StartButtonAction();
-    void actionButton();
+    StartButtonImpl();
+    void pressButton();
 };
 
 

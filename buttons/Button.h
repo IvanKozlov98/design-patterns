@@ -7,15 +7,16 @@
 
 #include <string>
 #include <memory>
-#include "IButtonAction.h"
+#include "ButtonImpl.h"
 
 class Button {
 protected:
-    std::unique_ptr<IButtonAction> buttonAction;
+    std::unique_ptr<ButtonImpl> _pressButton;
     std::string name;
 public:
-    virtual void actionButton() {
-        buttonAction->actionButton();
+    virtual int pressButton() {
+        _pressButton->pressButton();
+        return 0;
     };
     Button(const std::string &name) : name(name) {
     }
@@ -24,9 +25,14 @@ public:
 };
 
 class DrinkButton : public Button {
+private:
+    std::string description;
+    int price;
 public:
-    DrinkButton();
-    DrinkButton(const std::string&);
+    DrinkButton(std::string des, int price);
+    virtual int pressButton();
+    virtual int getPrice();
+    virtual std::string getDescription();
 };
 
 class SugarButton : public Button {

@@ -9,8 +9,9 @@ void RealController::startProcessCoffee()  {
     std::cout << "start process Coffee\n";
 }
 
-void ProxyController::startProcessCoffee() {
-    if (5 > 3) {
+void ProxyController::startProcessCoffee(int price, int balance) {
+    WorkMoneyFacade *workMoneyFacade = new WorkMoneyFacade();
+    if (workMoneyFacade->transaction(price, balance)) {
         if (controller == nullptr) {
             controller = std::make_unique<RealController>();
         }

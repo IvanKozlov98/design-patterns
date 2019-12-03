@@ -1,24 +1,40 @@
 #include "Button.h"
-#include "IButtonAction.h"
+#include "ButtonImpl.h"
 #include <string>
+#include <algorithm>
 
-DrinkButton::DrinkButton() {
-    buttonAction = std::make_unique<PushButtonAction>();
+DrinkButton::DrinkButton(std::string des, int price) : Button(des){
+    _pressButton = std::make_unique<PushButtonImpl>();
+    this->description = des;
+    this->price = price;
 }
 
-DrinkButton::DrinkButton(const std::string &str) : Button(str) { }
+int DrinkButton::pressButton() {
+    _pressButton->pressButton();
+    return this->price;
+}
+
+int DrinkButton::getPrice() {
+    return price;
+}
+
+std::string DrinkButton::getDescription() {
+    return this->description;
+}
 
 SugarButton::SugarButton() {
-    buttonAction = std::make_unique<MoveButtonAction>();
+    _pressButton = std::make_unique<MoveButtonImpl>();
 }
 
 ReturnMoneyButton::ReturnMoneyButton() {
-    buttonAction = std::make_unique<PushButtonAction>();
+    _pressButton = std::make_unique<PushButtonImpl>();
 }
 
 StartButton::StartButton() {
-    buttonAction = std::make_unique<StartButtonAction>();
+    _pressButton = std::make_unique<StartButtonImpl>();
 }
+
+
 
 
 

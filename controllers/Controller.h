@@ -6,6 +6,7 @@
 #define COFEEAUTOMAT_CONTROLLER_H
 
 #include <iostream>
+#include "../facade/WorkMoneyFacade.h"
 
 class Controller {
 public:
@@ -21,7 +22,7 @@ class ProxyController {
 private:
     std::unique_ptr<RealController> controller;
 public:
-    void startProcessCoffee();
+    void startProcessCoffee(int price, int balance);
 };
 
 
