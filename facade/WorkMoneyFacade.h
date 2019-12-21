@@ -8,7 +8,7 @@
 // класс для счета
 class Calculator {
 public:
-    virtual int calculate(int price, int balance);
+    virtual int calculate(int price);
 };
 
 // класс выдачи сдачи клиенту

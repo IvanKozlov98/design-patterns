@@ -4,10 +4,11 @@
 
 #include <iostream>
 #include "WorkMoneyFacade.h"
+#include "../singletonBank/Bank.h"
 
 
-int Calculator::calculate(int price, int balance) {
-    return (balance - price);
+int Calculator::calculate(int price) {
+    return (CurrentBank::Instance()->getBalance() - price);
 }
 
 void OddMoney::outOddMoney(int money) {
@@ -20,9 +21,10 @@ WorkMoneyFacade::WorkMoneyFacade() {
 }
 
 bool WorkMoneyFacade::transaction(int price, int balance) {
-    int dif = calculator->calculate(price, balance);
+    int dif = calculator->calculate(price);
     if (dif >= 0) {
-        //  totalBank.add(price); // кладем деньги в общий банк
+        TotalBank::Instance()->addBalance(price); // кладем деньги в общий банк
+        CurrentBank::Instance()->subBalance(price);
         std::cout << "оплата прошла успешно\n";
         oddMoney->outOddMoney(dif);
         return true;

@@ -3,12 +3,14 @@
 //
 #include <iostream>
 #include "CoffeeProccessFacade.h"
+#include "../singletonBank/Bank.h"
 
 Reciever::Reciever() {
     this->purchaseInfo = new PurchaseInfo();
 }
 
 void Reciever::recieveMoney(int money) {
+    CurrentBank::Instance()->addBalance(money);
     std::cout << "принял " << money << "  руб\n";
     purchaseInfo->setMoney(money);
     time_t now = time(0);

@@ -4,9 +4,15 @@
 
 #include <memory>
 #include "Controller.h"
+#include "../builder/RegistryBuilder.h"
+#include "../builder/Director.h"
 
 void RealController::startProcessCoffee()  {
     std::cout << "start process Coffee\n";
+    std::string name = "latte";
+    DrinkBuilder *drinkBuilder = RegistryBuilder::Instance()->getDrinkBuilder(name);
+    Director *director = new Director(drinkBuilder);
+    director->construct();
 }
 
 void ProxyController::startProcessCoffee(int price, int balance) {
