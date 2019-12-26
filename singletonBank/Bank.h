@@ -7,20 +7,36 @@
 
 
 class Bank {
+public:
+    virtual void addBalance(int money) = 0;
+    virtual void subBalance(int money) = 0;
+    virtual int getBalance() = 0;
+};
+
+class TotalBank: public Bank {
 private:
-    static Bank* instance;
+    static TotalBank* instance;
     int balance;
 protected:
-    Bank();
+    TotalBank();
 public:
-    static Bank *Instance();
+    static TotalBank *Instance();
     void addBalance(int money);
     void subBalance(int money);
     int getBalance();
 };
 
-class TotalBank: public Bank { };
-
-class CurrentBank: public Bank {};
+class CurrentBank: public Bank {
+private:
+    static CurrentBank* instance;
+    int balance;
+protected:
+    CurrentBank();
+public:
+    static CurrentBank *Instance();
+    void addBalance(int money);
+    void subBalance(int money);
+    int getBalance();
+};
 
 #endif //COFEEAUTOMAT_BANK_H

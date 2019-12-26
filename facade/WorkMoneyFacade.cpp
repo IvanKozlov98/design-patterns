@@ -23,8 +23,10 @@ WorkMoneyFacade::WorkMoneyFacade() {
 bool WorkMoneyFacade::transaction(int price, int balance) {
     int dif = calculator->calculate(price);
     if (dif >= 0) {
-        TotalBank::Instance()->addBalance(price); // кладем деньги в общий банк
-        CurrentBank::Instance()->subBalance(price);
+        auto tb = TotalBank::Instance();
+        tb->addBalance(price); // кладем деньги в общий банк
+        auto cb = CurrentBank::Instance();
+        cb->subBalance(price);
         std::cout << "оплата прошла успешно\n";
         oddMoney->outOddMoney(dif);
         return true;

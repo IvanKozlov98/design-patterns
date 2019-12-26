@@ -5,25 +5,48 @@
 #include "Bank.h"
 
 
-Bank* Bank::instance = 0;
+TotalBank* TotalBank::instance = 0;
 
-Bank::Bank() {}
+TotalBank::TotalBank() {}
 
-void Bank::addBalance(int money) {
+void TotalBank::addBalance(int money) {
     balance += money;
 }
 
-void Bank::subBalance(int money) {
+void TotalBank::subBalance(int money) {
     balance -= money;
 }
 
-int Bank::getBalance() {
+int TotalBank::getBalance() {
     return balance;
 }
 
-Bank* Bank::Instance() {
+TotalBank* TotalBank::Instance() {
     if (instance == 0) {
-        instance = new Bank();
+        instance = new TotalBank();
+    }
+    return instance;
+}
+
+CurrentBank* CurrentBank::instance = 0;
+
+CurrentBank::CurrentBank() {}
+
+void CurrentBank::addBalance(int money) {
+    balance += money;
+}
+
+void CurrentBank::subBalance(int money) {
+    balance -= money;
+}
+
+int CurrentBank::getBalance() {
+    return balance;
+}
+
+CurrentBank* CurrentBank::Instance() {
+    if (instance == 0) {
+        instance = new CurrentBank();
     }
     return instance;
 }
